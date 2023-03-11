@@ -1,7 +1,6 @@
 package dannelysbeth.jetbrains_academy;
 
 import java.util.Scanner;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,7 +14,7 @@ public class Main {
 
 
     }
-    public static String decode (String str1) {
+    public static String decode (String str1) throws Exception {
         int space_num = 0;
         String addString = "";
         String zeroOrOne = "";
@@ -76,6 +75,8 @@ public class Main {
                 } else if (remainder == 6) {
                     symbol = (char) number;
                     encodedMessage = encodedMessage + symbol;
+                } else {
+                    throw new Exception("Not found");
                 }
             }
         }
