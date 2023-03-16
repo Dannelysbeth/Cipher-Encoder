@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="401c728f-01f6-419a-b8ee-bea4816aa2ed" name="Changes" comment="added exception">
+    <list default="true" id="401c728f-01f6-419a-b8ee-bea4816aa2ed" name="Changes" comment="finished project">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dannelysbeth/jetbrains_academy/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dannelysbeth/jetbrains_academy/Main.java" afterDir="false" />
     </list>
@@ -43,7 +43,9 @@
       <option name="presentableId" value="Default" />
       <updated>1678141880533</updated>
       <workItem from="1678141881747" duration="10104000" />
-      <workItem from="1678401646196" duration="5214000" />
+      <workItem from="1678401646196" duration="6443000" />
+      <workItem from="1678831123591" duration="1046000" />
+      <workItem from="1679006416925" duration="494000" />
     </task>
     <task id="LOCAL-00001" summary="add string encoder to binary">
       <created>1678142435172</created>
@@ -101,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678574710076</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="finished project">
+      <created>1678581457707</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1678581457707</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,25 +134,21 @@
     <MESSAGE value="added chuck norris code to cipher encoder v2" />
     <MESSAGE value="added chuck norris code to cipher encoder works fine" />
     <MESSAGE value="added exception" />
-    <option name="LAST_COMMIT_MESSAGE" value="added exception" />
+    <MESSAGE value="finished project" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/dannelysbeth/jetbrains_academy/Main.java</url>
-          <line>178</line>
+          <line>160</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/dannelysbeth/jetbrains_academy/Main.java</url>
-          <line>166</line>
+          <line>148</line>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/dannelysbeth/jetbrains_academy/Main.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

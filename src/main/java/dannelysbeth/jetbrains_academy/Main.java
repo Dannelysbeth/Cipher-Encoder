@@ -13,23 +13,16 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String option = scanner.nextLine();
         switch (option) {
-            case "encode" -> {
-                encode();
-                System.out.println();
-                menu();
+            case "encode" -> encode();
+            case "decode" -> decode();
+            case "exit" -> {
+                sayBye();
+                return;
             }
-            case "decode" -> {
-                decode();
-                System.out.println();
-                menu();
-            }
-            case "exit" -> sayBye();
-            default -> {
-                System.out.println("There is no '" + option + "' operation");
-                System.out.println();
-                menu();
-            }
+            default -> System.out.println("There is no '" + option + "' operation");
         }
+        System.out.println();
+        menu();
     }
 
     public static void sayBye(){
