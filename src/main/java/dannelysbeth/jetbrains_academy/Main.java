@@ -5,10 +5,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         menu();
-
-
     }
-    public static void menu(){
+
+    public static void menu() {
         System.out.println("Please input operation (encode/decode/exit):");
         Scanner scanner = new Scanner(System.in);
         String option = scanner.nextLine();
@@ -16,7 +15,7 @@ public class Main {
             case "encode" -> encode();
             case "decode" -> decode();
             case "exit" -> {
-                sayBye();
+                System.out.println("Bye!");
                 return;
             }
             default -> System.out.println("There is no '" + option + "' operation");
@@ -25,11 +24,7 @@ public class Main {
         menu();
     }
 
-    public static void sayBye(){
-        System.out.println("Bye!");
-    }
-
-    public static void decode () {
+    public static void decode() {
         System.out.println("Input encoded string:");
         Scanner scanner = new Scanner(System.in);
         String str1 = scanner.nextLine();
@@ -38,7 +33,7 @@ public class Main {
         StringBuilder addString = new StringBuilder();
         StringBuilder zeroOrOne = new StringBuilder();
         char c;
-        if(str1.charAt(0) != '0'){
+        if (str1.charAt(0) != '0') {
             System.out.println("Encoded string is not valid.");
             return;
         }
@@ -49,21 +44,20 @@ public class Main {
                 return;
             }
             if (c == ' ') {
-                if (str1.charAt(i-1) == ' ') {
+                if (str1.charAt(i - 1) == ' ') {
                     System.out.println("Encoded string is not valid.");
                     return;
                 }
                 space_num++;
-                if(space_num % 2 == 0) {
+                if (space_num % 2 == 0) {
                     zeroOrOne = new StringBuilder();
                 }
-            }
-            else if (space_num % 2 == 0) {
+            } else if (space_num % 2 == 0) {
                 zeroOrOne.append("0");
             } else {
                 if (zeroOrOne.toString().equals("0")) {
                     addString.append("1");
-                } else if (zeroOrOne.toString().equals("00")){
+                } else if (zeroOrOne.toString().equals("00")) {
                     addString.append("0");
                 } else {
                     System.out.println("Encoded string is not valid.");
@@ -78,13 +72,13 @@ public class Main {
         int number = 0;
         char symbol;
         StringBuilder encodedMessage = new StringBuilder();
-        if(addString.length() % 7 != 0) {
+        if (addString.length() % 7 != 0) {
             System.out.println("Encoded string is not valid.");
             return;
         }
         for (int i = 0; i < addString.length(); i++) {
             int remainder = i % 7;
-            if (addString.charAt(i)=='1'){
+            if (addString.charAt(i) == '1') {
                 switch (remainder) {
                     case 0 -> number = 64;
                     case 1 -> number = number + 32;
@@ -113,40 +107,61 @@ public class Main {
         System.out.println(encodedMessage);
     }
 
+    /**
+     * Method takes string input and encodes it to Chuck Norris Code
+     */
     public static void encode() {
         System.out.println("Input string:");
         Scanner scanner = new Scanner(System.in);
-        String str1 = scanner.nextLine();
-        System.out.println("The encoded string:");
+        String message = scanner.nextLine();
+        String encodedMessage = convertBinaryStringToChuckNorrisCode(
+                convertStringToBinaryString(message)
+        );
+        System.out.println("The encoded string:" + "\n" + encodedMessage);
+    }
 
+    /**
+     * Converts input message to binary string
+     * @param message the input string, that should be encoded
+     * @return the binary string
+     */
+    private static String convertStringToBinaryString(String message) {
         StringBuilder binaryString = new StringBuilder();
         int number;
-        for(char c : str1.toCharArray()) {
+        for (char c : message.toCharArray()) {
             number = c;
             binaryString.append(String.format("%7s", Integer.toBinaryString(number)).replace(' ', '0'));
         }
+        return binaryString.toString();
+    }
 
-        StringBuilder s;
-        char [] charArray = binaryString.toString().toCharArray();
-        if (charArray[0] == '0') {
-            s = new StringBuilder("00 0");
+    /**
+     * Takes binary string and coverts it to Chuck Norris Code
+     * @param binaryString provided string, that consists of '0' and '1'
+     * @return the encoded string
+     */
+    private static String convertBinaryStringToChuckNorrisCode(String binaryString) {
+        StringBuilder encodedString;
+
+        if (binaryString.charAt(0) == '0') {
+            encodedString = new StringBuilder("00 0");
         } else {
-            s = new StringBuilder("0 0");
+            encodedString = new StringBuilder("0 0");
         }
-        char prev = charArray[0];
 
-        for (int i = 1; i < charArray.length; i++) {
-            if (charArray[i] == prev){
-                s.append("0");
+        char prevChar;
+        for (int i = 1; i < binaryString.length(); i++) {
+            prevChar = binaryString.charAt(i-1);
+            if (binaryString.charAt(i) == prevChar) {
+                encodedString.append("0");
             } else {
-                if (charArray[i] == '0') {
-                    s.append(" 00 0");
+                if (binaryString.charAt(i) == '0') {
+                    encodedString.append(" 00 0");
                 } else {
-                    s.append(" 0 0");
+                    encodedString.append(" 0 0");
                 }
             }
-            prev = charArray[i];
         }
-        System.out.println(s);
+       return encodedString.toString();
     }
 }
