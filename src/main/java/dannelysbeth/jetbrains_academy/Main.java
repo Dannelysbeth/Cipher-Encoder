@@ -80,28 +80,23 @@ public class Main {
         System.out.println(binaryStringToMessage(addString.toString()));
     }
 
+    /**
+     * Converts given binaryString to real message
+     * @param binaryString the provided binary string
+     * @return decoded message
+     */
     public static String binaryStringToMessage(String binaryString) {
         int number = 0;
-        int [] values = {64, 32, 16, 8, 4, 2};
-        char symbol;
         StringBuilder encodedMessage = new StringBuilder();
         for (int i = 0; i < binaryString.length(); i++) {
-            int remainder = i % 7;                                      //checking what part of binaryString is that
-            if (binaryString.charAt(i) == '1') {
-                if (remainder >= 0 && remainder < 6) {
-                    number += values[remainder];
-                } else {
-                    number++;
-                    symbol = (char) number;
-                    encodedMessage.append(symbol);
-                }
-            } else {
-                if (remainder == 0) {
-                    number = 0;
-                } else if (remainder == 6) {
-                    symbol = (char) number;
-                    encodedMessage.append(symbol);
-                }
+            int remainder = i % 7;   //checking what part of binaryString is it
+            if (remainder == 0) {
+                number = (binaryString.charAt(i) == '1') ? 64 : 0;
+            }
+            number += (binaryString.charAt(i) == '1') ? 1 << (6 - remainder) : 0;
+
+            if (remainder == 6) {
+                encodedMessage.append((char) number);
             }
         }
         return encodedMessage.toString();
@@ -141,28 +136,16 @@ public class Main {
      * @return the encoded string
      */
     private static String convertBinaryStringToChuckNorrisCode(String binaryString) {
-        StringBuilder encodedString;
-
-        //checking out first character in provided string and adding to sequence
-        if (binaryString.charAt(0) == '0') {
-            encodedString = new StringBuilder("00 0");
-        } else {
-            encodedString = new StringBuilder("0 0");
-        }
-
+        String encodedString = (binaryString.charAt(0) == '0') ? "00 0" : "0 0";         //checking out first character in provided string and adding to sequence
         char prevChar;
         for (int i = 1; i < binaryString.length(); i++) {
             prevChar = binaryString.charAt(i-1);
-            if (binaryString.charAt(i) == prevChar) {
-                encodedString.append("0");
-            } else {
-                if (binaryString.charAt(i) == '0') {
-                    encodedString.append(" 00 0");
-                } else {
-                    encodedString.append(" 0 0");
-                }
-            }
+            encodedString = (binaryString.charAt(i) == prevChar) ?
+                    encodedString + "0" :
+                    ((binaryString.charAt(i) == '0') ?
+                            encodedString + " 00 0" :
+                            encodedString + " 0 0");
         }
-       return encodedString.toString();
+       return encodedString;
     }
 }
