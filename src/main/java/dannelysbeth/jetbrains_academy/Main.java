@@ -69,30 +69,31 @@ public class Main {
             System.out.println("Encoded string is not valid.");
             return;
         }
-        int number = 0;
-        char symbol;
-        StringBuilder encodedMessage = new StringBuilder();
+
+
         if (addString.length() % 7 != 0) {
             System.out.println("Encoded string is not valid.");
             return;
         }
-        for (int i = 0; i < addString.length(); i++) {
-            int remainder = i % 7;
-            if (addString.charAt(i) == '1') {
-                switch (remainder) {
-                    case 0 -> number = 64;
-                    case 1 -> number = number + 32;
-                    case 2 -> number += 16;
-                    case 3 -> number += 8;
-                    case 4 -> number += 4;
-                    case 5 -> number += 2;
-                    case 6 -> {
-                        number++;
-                        symbol = (char) number;
-                        encodedMessage.append(symbol);
-                    }
-                    default -> {
-                    }
+
+        System.out.println("The decoded string:");
+        System.out.println(binaryStringToMessage(addString.toString()));
+    }
+
+    public static String binaryStringToMessage(String binaryString) {
+        int number = 0;
+        int [] values = {64, 32, 16, 8, 4, 2};
+        char symbol;
+        StringBuilder encodedMessage = new StringBuilder();
+        for (int i = 0; i < binaryString.length(); i++) {
+            int remainder = i % 7;                                      //checking what part of binaryString is that
+            if (binaryString.charAt(i) == '1') {
+                if (remainder >= 0 && remainder < 6) {
+                    number += values[remainder];
+                } else {
+                    number++;
+                    symbol = (char) number;
+                    encodedMessage.append(symbol);
                 }
             } else {
                 if (remainder == 0) {
@@ -103,8 +104,7 @@ public class Main {
                 }
             }
         }
-        System.out.println("The decoded string:");
-        System.out.println(encodedMessage);
+        return encodedMessage.toString();
     }
 
     /**
@@ -143,6 +143,7 @@ public class Main {
     private static String convertBinaryStringToChuckNorrisCode(String binaryString) {
         StringBuilder encodedString;
 
+        //checking out first character in provided string and adding to sequence
         if (binaryString.charAt(0) == '0') {
             encodedString = new StringBuilder("00 0");
         } else {
