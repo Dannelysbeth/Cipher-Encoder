@@ -27,32 +27,36 @@ public class Main {
     public static void decode() {
         System.out.println("Input encoded string:");
         Scanner scanner = new Scanner(System.in);
-        String str1 = scanner.nextLine();
+        String inputString = scanner.nextLine();
         System.out.println();
-        int space_num = 0;
+
+
+
+
+        int spacesAmounts = 0;
         StringBuilder addString = new StringBuilder();
         StringBuilder zeroOrOne = new StringBuilder();
         char c;
-        if (str1.charAt(0) != '0') {
+        if (inputString.charAt(0) != '0') {
             System.out.println("Encoded string is not valid.");
             return;
         }
-        for (int i = 0; i < str1.length(); i++) {
-            c = str1.charAt(i);
+        for (int i = 0; i < inputString.length(); i++) {
+            c = inputString.charAt(i);
             if (c != ' ' && c != '0') {
                 System.out.println("Encoded string is not valid.");
                 return;
             }
             if (c == ' ') {
-                if (str1.charAt(i - 1) == ' ') {
+                if (inputString.charAt(i - 1) == ' ') {
                     System.out.println("Encoded string is not valid.");
                     return;
                 }
-                space_num++;
-                if (space_num % 2 == 0) {
+                spacesAmounts++;
+                if (spacesAmounts % 2 == 0) {
                     zeroOrOne = new StringBuilder();
                 }
-            } else if (space_num % 2 == 0) {
+            } else if (spacesAmounts % 2 == 0) {
                 zeroOrOne.append("0");
             } else {
                 if (zeroOrOne.toString().equals("0")) {
@@ -65,7 +69,7 @@ public class Main {
                 }
             }
         }
-        if (space_num % 2 == 0) {
+        if (spacesAmounts % 2 == 0) {
             System.out.println("Encoded string is not valid.");
             return;
         }
